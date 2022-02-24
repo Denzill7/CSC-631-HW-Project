@@ -3,7 +3,11 @@ guid: 7b9db7f990ff2fb43b0f89841aeafecb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - beamCheck: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - wallMaterial: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

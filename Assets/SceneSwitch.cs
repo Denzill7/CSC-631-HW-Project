@@ -11,14 +11,22 @@ public class SceneSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            switch(SceneManager.GetActiveScene().buildIndex) {
+                case 0: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); break;
+                case 1: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); break;
+                case 2: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2); break;
             }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-            }
+            // if (SceneManager.GetActiveScene().buildIndex == 1) {
+            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // }
+            // else if (SceneManager.GetActiveScene().buildIndex == 0)
+            // {
+            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // }
+            // else
+            // {
+            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            // }
         }
     }
 }
