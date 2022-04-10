@@ -47,7 +47,7 @@ public class StartMenu : MonoBehaviour
         msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
 		//msgQueue.AddCallback(Constants.SMSG_LEAVE, OnResponseLeave);
 		msgQueue.AddCallback(Constants.SMSG_SETNAME, OnResponseSetName);
-		//msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
+		msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
 
 		//player1Name = GameObject.Find("Player1Name").GetComponent<TMPro.TextMeshProUGUI>();
 		//player2Name = GameObject.Find("Player2Name").GetComponent<TMPro.TextMeshProUGUI>();
@@ -199,6 +199,9 @@ public class StartMenu : MonoBehaviour
 				return;
 			}
 		}
+
+		Debug.Log("Player Ready?: " + ready);
+		Debug.Log("Opponent Ready?: " + opReady);
 
 		if (ready && opReady)
 		{
