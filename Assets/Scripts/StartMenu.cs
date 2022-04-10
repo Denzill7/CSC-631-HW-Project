@@ -27,6 +27,11 @@ public class StartMenu : MonoBehaviour
 	private GameObject playerInput;
 	private GameObject opponentInput;
 
+	public TMPro.TMP_InputField player1InputField;
+	public TMPro.TMP_InputField player2InputField;
+	private TMPro.TMP_InputField playerInputField;
+	private TMPro.TMP_InputField opponentInputField;
+
 	private bool ready = false;
 	private bool opReady = false;
 	// Start is called before the first frame update
@@ -61,6 +66,8 @@ public class StartMenu : MonoBehaviour
 				opponentName = player2Name;
 				playerInput = player1Input;
 				opponentInput = player2Input;
+				player1InputField = playerInputField;
+				player2InputField = opponentInputField;
 				Debug.Log("Player 1 has joined");
 			}
 			else if (args.user_id == 2)
@@ -69,6 +76,8 @@ public class StartMenu : MonoBehaviour
 				opponentName = player1Name;
 				playerInput = player2Input;
 				opponentInput = player1Input;
+				player2InputField = playerInputField;
+				player1InputField = opponentInputField;
 				Debug.Log("Player 2 has joined");
 			}
 			else
@@ -133,17 +142,18 @@ public class StartMenu : MonoBehaviour
 		}
 	}
 
-	public void OnPlayerNameSet(string name)
+	public void OnPlayerNameSet()
 	{
+		string name = playerInputField.text;
 		Debug.Log("Send SetNameReq: " + name);
 		networkManager.SendSetNameRequest(name);
 		if (Constants.USER_ID == 1)
 		{
-			p1Name = name;
+			player1Name.text = name;
 		}
 		else
 		{
-			p2Name = name;
+			player2Name.text = name;
 		}
 	}
 
