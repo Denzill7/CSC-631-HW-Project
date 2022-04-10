@@ -124,13 +124,11 @@ public class StartMenu : MonoBehaviour
 			opponentName.text = args.name;
 			if (args.user_id == 1)
 			{
-				p1Name = args.name;
-				player1Name.text = p1Name;
+				player1Name.text = args.name;
 			}
 			else
 			{
-				p2Name = args.name;
-				player2Name.text = p2Name;
+				player2Name.text = args.name;
 			}
 		}
 	}
@@ -160,8 +158,63 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+	public void OnReadyClick()
+	{
+		Debug.Log("Send ReadyReq");
+		networkManager.SendReadyRequest();
+	}
+
+	public void OnResponseReady(ExtendedEventArgs eventArgs)
+	{
+		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;
+		if (Constants.USER_ID == -1) // Haven't joined, but got ready message
+		{
+			opReady = true;
+		}
+		else
+		{
+			if (args.user_id == Constants.OP_ID)
+			{
+				opReady = true;
+			}
+			else if (args.user_id == Constants.USER_ID)
+			{
+				ready = true;
+			}
+			else
+			{
+				Debug.Log("ERROR: Invalid user_id in ResponseReady: " + args.user_id);
+				//messageBoxMsg.text = "Error starting game. Network returned invalid response.";
+				//messageBox.SetActive(true);
+				return;
+			}
+		}
+
+		if (ready && opReady)
+		{
+			StartNetworkGame();
+		}
+	}
+
+	private void StartNetworkGame()
+	{
+		GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+		if (p1Name.Length == 0)
+		{
+			p1Name = "Player 1";
+		}
+		if (p2Name.Length == 0)
+		{
+			p2Name = "Player 2";
+		}
+		PlayerController player1 = new PlayerController();      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
+		PlayerController player2 = new PlayerController();		//(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
+		gameManager.Init(player1, player2);
+		SceneManager.LoadScene("SampleScene");
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         
     }
