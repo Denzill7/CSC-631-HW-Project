@@ -14,13 +14,18 @@ public class StartMenu : MonoBehaviour
     private GameManager gameManager;
     private MessageQueue msgQueue;
 
-	private TMPro.TextMeshProUGUI player1Name;
-	private TMPro.TextMeshProUGUI player2Name;
+	public TMPro.TextMeshProUGUI player1Name;
+	public TMPro.TextMeshProUGUI player2Name;
 	private GameObject player1Input;
 	private GameObject player2Input;
 
 	private string p1Name = "Player 1";
 	private string p2Name = "Player 2";
+
+	private TMPro.TextMeshProUGUI playerName;
+	private TMPro.TextMeshProUGUI opponentName;
+	private GameObject playerInput;
+	private GameObject opponentInput;
 
 	private bool ready = false;
 	private bool opReady = false;
@@ -36,11 +41,11 @@ public class StartMenu : MonoBehaviour
         // add callbacks
         msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
 		//msgQueue.AddCallback(Constants.SMSG_LEAVE, OnResponseLeave);
-		//msgQueue.AddCallback(Constants.SMSG_SETNAME, OnResponseSetName);
+		msgQueue.AddCallback(Constants.SMSG_SETNAME, OnResponseSetName);
 		//msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
 
-		player1Name = GameObject.Find("Player1Name").GetComponent<TMPro.TextMeshProUGUI>();
-		player2Name = GameObject.Find("Player2Name").GetComponent<TMPro.TextMeshProUGUI>();
+		//player1Name = GameObject.Find("Player1Name").GetComponent<TMPro.TextMeshProUGUI>();
+		//player2Name = GameObject.Find("Player2Name").GetComponent<TMPro.TextMeshProUGUI>();
 		player1Input = GameObject.Find("Player1Input");
 		player2Input = GameObject.Find("Player2Input");
 	}
@@ -52,18 +57,18 @@ public class StartMenu : MonoBehaviour
 		{
 			if (args.user_id == 1)
 			{
-				//playerName = player1Name;
-				//opponentName = player2Name;
-				//playerInput = player1Input;
-				//opponentInput = player2Input;
+				player1Name.text = p1Name;
+				opponentName = player2Name;
+				playerInput = player1Input;
+				opponentInput = player2Input;
 				Debug.Log("Player 1 has joined");
 			}
 			else if (args.user_id == 2)
 			{
-				//playerName = player2Name;
-				//opponentName = player1Name;
-				//playerInput = player2Input;
-				//opponentInput = player1Input;
+				player2Name.text = p2Name;
+				opponentName = player1Name;
+				playerInput = player2Input;
+				opponentInput = player1Input;
 				Debug.Log("Player 2 has joined");
 			}
 			else
@@ -80,8 +85,8 @@ public class StartMenu : MonoBehaviour
 			{
 				if (args.op_id == Constants.OP_ID)
 				{
-					//opponentName.text = args.op_name;
-					//opReady = args.op_ready;
+					opponentName.text = args.op_name;
+					opReady = args.op_ready;
 				}
 				else
 				{
@@ -93,7 +98,7 @@ public class StartMenu : MonoBehaviour
 			}
 			else
 			{
-				//opponentName.text = "Waiting for opponent";
+				opponentName.text = "Waiting for opponent";
 			}
 
 			//playerInput.SetActive(true);
@@ -108,6 +113,39 @@ public class StartMenu : MonoBehaviour
 		{
 			//messageBoxMsg.text = "Server is full.";
 			//messageBox.SetActive(true);
+		}
+	}
+
+	public void OnResponseSetName(ExtendedEventArgs eventArgs)
+	{
+		ResponseSetNameEventArgs args = eventArgs as ResponseSetNameEventArgs;
+		if (args.user_id != Constants.USER_ID)
+		{
+			opponentName.text = args.name;
+			if (args.user_id == 1)
+			{
+				p1Name = args.name;
+				player1Name.text = p1Name;
+			}
+			else
+			{
+				p2Name = args.name;
+				player2Name.text = p2Name;
+			}
+		}
+	}
+
+	public void OnPlayerNameSet(string name)
+	{
+		Debug.Log("Send SetNameReq: " + name);
+		networkManager.SendSetNameRequest(name);
+		if (Constants.USER_ID == 1)
+		{
+			p1Name = name;
+		}
+		else
+		{
+			p2Name = name;
 		}
 	}
 
