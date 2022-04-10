@@ -66,8 +66,8 @@ public class StartMenu : MonoBehaviour
 				opponentName = player2Name;
 				playerInput = player1Input;
 				opponentInput = player2Input;
-				player1InputField = playerInputField;
-				player2InputField = opponentInputField;
+				playerInputField = player1InputField;
+				opponentInputField = player2InputField;
 				Debug.Log("Player 1 has joined");
 			}
 			else if (args.user_id == 2)
@@ -76,8 +76,8 @@ public class StartMenu : MonoBehaviour
 				opponentName = player1Name;
 				playerInput = player2Input;
 				opponentInput = player1Input;
-				player2InputField = playerInputField;
-				player1InputField = opponentInputField;
+				playerInputField = player2InputField;
+				opponentInputField = player1InputField;
 				Debug.Log("Player 2 has joined");
 			}
 			else
