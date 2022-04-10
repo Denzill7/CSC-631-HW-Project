@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/gson-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/json_simple-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/axis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/commons-discovery-0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/commons-pool-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/commons-dbcp-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/jaxrpc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/saaj.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/mysql-connector-java-5.1.22-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HW4_Server_Mk_2/lib/javax.wsdl_1.6.2.v201012040545.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

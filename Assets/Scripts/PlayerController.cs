@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Rotational Speed
+    public string name;
     public float speed = 0f;
     Vector3 forwardRotate;
     Vector3 backwardRotate;
     Vector3 leftRotate;
     Vector3 rightRotate;
+
+    public PlayerController()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +25,7 @@ public class PlayerController : MonoBehaviour
         leftRotate = new Vector3(0, 0, 10);
         rightRotate = new Vector3(0, 0, -10);
     }
+
 
     // Update is called once per frame
     void Update()

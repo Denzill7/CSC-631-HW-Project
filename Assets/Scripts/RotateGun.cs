@@ -14,6 +14,7 @@ public class RotateGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        zAngle = 0f;
         effectToSpawn = vfx[0];
     }
 
