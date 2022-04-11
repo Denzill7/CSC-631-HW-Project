@@ -15269,6 +15269,7 @@ GameObject:
   - component: {fileID: 1708859024}
   - component: {fileID: 1708859023}
   - component: {fileID: 1708859027}
+  - component: {fileID: 1708859028}
   m_Layer: 3
   m_Name: Gun1
   m_TagString: Untagged
@@ -15372,6 +15373,26 @@ MonoBehaviour:
   firePoint: {fileID: 1371729491}
   vfx:
   - {fileID: 329006966}
+--- !u!114 &1708859028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708859022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70200e57a961114cbffaf155bce6688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user_id: 1
+  name: 
+  speed: 0
+  gun: {fileID: 1708859022}
+  firePoint: {fileID: 1371729491}
+  vfx: []
+  zAngle: 0
+  effectToSpawn: {fileID: 329006966}
 --- !u!43 &1829212193
 Mesh:
   m_ObjectHideFlags: 0

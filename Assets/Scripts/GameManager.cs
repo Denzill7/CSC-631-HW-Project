@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
 	private bool canInteract = false;
 	private bool choosingInteraction = false;
 
+	private GameObject upButton;
+	private GameObject downButton;
+	private GameObject leftButton;
+	private GameObject rightButton;
+
 	private bool useNetwork;
 	private NetworkManager networkManager;
 
@@ -36,6 +41,10 @@ public class GameManager : MonoBehaviour
 		Players[0] = player1;
 		Players[1] = player2;
 		currentPlayer = 1;
+		upButton = GameObject.Find("Up Arrow Button");
+		downButton = GameObject.Find("Down Arrow Button");
+		leftButton = GameObject.Find("Left Arrow Button");
+		rightButton = GameObject.Find("Right Arrow Button");
 		//useNetwork = (!player1.IsMouseControlled || !player2.IsMouseControlled);
 	}
 
@@ -59,6 +68,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	*/
+
+	public void onUpClick()
+    {
+		Players[currentPlayer - 1].MoveUp();
+		networkManager.sendMoveRequest();
+    }
 
 	public bool CanInteract()
 	{
@@ -233,7 +248,7 @@ public class GameManager : MonoBehaviour
 		{
 			int y = args.y;
 			PlayerController player = Players[args.user_id - 1];
-			//player.Move(y);
+			player.MoveUp();
 		}
 		else if (args.user_id == Constants.USER_ID)
 		{

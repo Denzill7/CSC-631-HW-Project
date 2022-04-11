@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject firePoint;
     public List<GameObject> vfx = new List<GameObject>();
     public float zAngle = 0f;
-    private GameObject effectToSpawn;
+    public GameObject effectToSpawn;
 
     Vector3 forwardRotate;
     Vector3 backwardRotate;

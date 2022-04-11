@@ -223,10 +223,11 @@ public class StartMenu : MonoBehaviour
 		{
 			p2Name = "Player 2";
 		}
-		PlayerController player1 = PlayerController.makePlayerObject(1, player1Name.text, gun);      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
-		PlayerController player2 = PlayerController.makePlayerObject(2, player2Name.text, gun);		//(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
-		gameManager.Init(player1, player2);
 		SceneManager.LoadScene("SampleScene");
+		PlayerController player1 = GameObject.Find("Gun1").GetComponent<PlayerController>();      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
+		PlayerController player2 = GameObject.Find("Gun2").GetComponent<PlayerController>();        //(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
+		gameManager.Init(player1, player2);
+		
 	}
 
 	// Update is called once per frame
