@@ -209,9 +209,10 @@ public class StartMenu : MonoBehaviour
 		}
 	}
 
+	// fix typo in here
 	private void StartNetworkGame()
 	{
-		GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+		GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		if (p1Name.Length == 0)
 		{
 			p1Name = "Player 1";
