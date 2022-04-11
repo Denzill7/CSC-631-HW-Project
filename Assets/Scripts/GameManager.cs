@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 		networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
 		MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
 		msgQueue.AddCallback(Constants.SMSG_MOVE, OnResponseMove);
-		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
+		//msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 	}
 
 	public PlayerController GetCurrentPlayer()

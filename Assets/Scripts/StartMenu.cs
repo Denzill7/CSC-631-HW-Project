@@ -13,6 +13,7 @@ public class StartMenu : MonoBehaviour
     private NetworkManager networkManager;
     private GameManager gameManager;
     private MessageQueue msgQueue;
+	private GameObject gun;
 
 	public TMPro.TextMeshProUGUI player1Name;
 	public TMPro.TextMeshProUGUI player2Name;
@@ -42,6 +43,7 @@ public class StartMenu : MonoBehaviour
         networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         msgQueue = networkManager.GetComponent<MessageQueue>();
+		gun = GameObject.Find("Gun");
 
         // add callbacks
         msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
@@ -221,8 +223,8 @@ public class StartMenu : MonoBehaviour
 		{
 			p2Name = "Player 2";
 		}
-		PlayerController player1 = new PlayerController();      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
-		PlayerController player2 = new PlayerController();		//(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
+		PlayerController player1 = PlayerController.makePlayerObject(1, player1Name.text, gun);      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
+		PlayerController player2 = PlayerController.makePlayerObject(2, player2Name.text, gun);		//(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
 		gameManager.Init(player1, player2);
 		SceneManager.LoadScene("SampleScene");
 	}

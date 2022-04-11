@@ -5,8 +5,6 @@ using UnityEngine;
 public class ResponseMoveEventArgs : ExtendedEventArgs
 {
 	public int user_id { get; set; } // The user_id of whom who sent the request
-	public int piece_idx { get; set; } // The index of the piece to move. Belongs to player with id user_id
-	public int x { get; set; } // The x coordinate of the target location
 	public int y { get; set; } // The y coordinate of the target location
 
 	public ResponseMoveEventArgs()
@@ -18,8 +16,6 @@ public class ResponseMoveEventArgs : ExtendedEventArgs
 public class ResponseMove : NetworkResponse
 {
 	private int user_id;
-	private int piece_idx;
-	private int x;
 	private int y;
 
 	public ResponseMove()
