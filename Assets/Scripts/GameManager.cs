@@ -71,8 +71,10 @@ public class GameManager : MonoBehaviour
 
 	public void onUpClick()
     {
-		Players[currentPlayer - 1].MoveUp();
-		//networkManager.SendMoveRequest();
+		// Players[currentPlayer - 1].MoveUp();
+		// networkManager.SendMoveRequest();
+		networkManager.SendMoveRequest(0, 1, 0);
+		Debug.Log("Request to move up sent from GameManager!");
     }
 
 	public bool CanInteract()
@@ -246,9 +248,11 @@ public class GameManager : MonoBehaviour
 		ResponseMoveEventArgs args = eventArgs as ResponseMoveEventArgs;
 		if (args.user_id == Constants.OP_ID)
 		{
+			int x = args.x;
 			int y = args.y;
+			int z = args.z;
 			PlayerController player = Players[args.user_id - 1];
-			player.MoveUp();
+			player.MoveUp(x, y, z);
 		}
 		else if (args.user_id == Constants.USER_ID)
 		{

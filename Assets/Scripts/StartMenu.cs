@@ -226,6 +226,8 @@ public class StartMenu : MonoBehaviour
 		SceneManager.LoadScene("SampleScene");
 		PlayerController player1 = GameObject.Find("Gun1").GetComponent<PlayerController>();      //(1, p1Name, new Color(0.9f, 0.1f, 0.1f), Constants.USER_ID == 1)
 		PlayerController player2 = GameObject.Find("Gun2").GetComponent<PlayerController>();        //(2, p2Name, new Color(0.2f, 0.2f, 1.0f), Constants.USER_ID == 2)
+		Debug.Log("Player1: " + player1);
+		Debug.Log("Player2: " + player2);
 		gameManager.Init(player1, player2);
 		
 	}

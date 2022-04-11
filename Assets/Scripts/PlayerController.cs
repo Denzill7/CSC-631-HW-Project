@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector3 backwardRotate;
     Vector3 leftRotate;
     Vector3 rightRotate;
+    private NetworkManager networkManager;
 
     public PlayerController(int user_id, string name, GameObject gun)
     {
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         forwardRotate = new Vector3(10, 0, 0);
         backwardRotate = new Vector3(-10, 0, 0);
         leftRotate = new Vector3(0, 0, 10);
@@ -62,13 +64,17 @@ public class PlayerController : MonoBehaviour
         gun.transform.Rotate(0, 0, zAngle);
     }
 
-    public void MoveUp()
+    public void MoveUp(int x, int y, int z)
     {
-        gun.transform.position += Vector3.up;
+        /* Sends request for Vector3.up aka Vector3(0, 1, 0) */
+        // networkManager.SendMoveRequest(0, 1, 0);
+        Debug.Log("Moving up!");
+        gun.transform.position = gun.transform.position + new Vector3(x, y, z);
     }
 
     public void MoveDown()
     {
+        // networkManager.SendMoveRequest(0, -1, 0);
         gun.transform.position -= Vector3.up;
     }
 

@@ -11,9 +11,13 @@ public class RotateGun : MonoBehaviour
     public List<GameObject> vfx = new List<GameObject>();
 
     private GameObject effectToSpawn;
+
+    private NetworkManager networkManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         zAngle = 0f;
         effectToSpawn = vfx[0];
     }
@@ -31,9 +35,16 @@ public class RotateGun : MonoBehaviour
         gun.transform.Rotate(0, 0, zAngle);
     }
 
+    // public void MoveUp()
+    // {
+    //     gun.transform.position += Vector3.up;
+    // }
+
     public void MoveUp()
     {
-        gun.transform.position += Vector3.up;
+        // gun.transform.position += Vector3.up;
+        networkManager.SendMoveRequest(0, 1, 0);
+		Debug.Log("Request to move up sent from RotateGun!");
     }
 
     public void MoveDown()

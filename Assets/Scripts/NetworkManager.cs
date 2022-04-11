@@ -79,12 +79,12 @@ public class NetworkManager : MonoBehaviour
 		return false;
 	}
 
-	public bool SendMoveRequest(int y)
+	public bool SendMoveRequest(int x, int y, int z)
 	{
 		if (cManager && cManager.IsConnected())
 		{
 			RequestMove request = new RequestMove();
-			request.send(y);
+			request.send(x, y, z);
 			cManager.send(request);
 			return true;
 		}
