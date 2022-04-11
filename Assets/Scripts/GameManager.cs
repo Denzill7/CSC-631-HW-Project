@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 	public void onUpClick()
     {
 		Players[currentPlayer - 1].MoveUp();
-		networkManager.sendMoveRequest();
+		//networkManager.SendMoveRequest();
     }
 
 	public bool CanInteract()
